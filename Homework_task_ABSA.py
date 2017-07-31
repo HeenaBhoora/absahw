@@ -26,9 +26,9 @@ def users_signup(request):
              return HttpResponseRedirect("/")
         else:
              error = " Passwords do not match "
-             return render(request, 'login/signup.html',{"error":error})
+             return render(request, 'https://za.pinterest.com/login/?referrer=home_page',{"error":error})
     else:
-         return render(request, 'login/signup.html')
+         return render(request, 'https://za.pinterest.com/login/?referrer=home_page')
 
 
 #Login
@@ -44,10 +44,11 @@ with requests.Session() as c:
 }
     p = c.post('https://za.pinterest.com/login/?referrer=home_page', data=payload, headers={"Referer":"https://za.pinterest.com/"})
     print ('csrftoken is', csrftoken)
+    print ('Status Code Login', p)
     
 
 #Authentication
 from requests.auth import HTTPDigestAuth
-url = 'http://httpbin.org/digest-auth/auth/user/pass'
+url = 'https://za.pinterest.com/heenabhoora/'
 x = requests.get(url, auth=HTTPDigestAuth('user', 'pass'))
-print (x.text)
+print ('Status Code Authentication', x)
